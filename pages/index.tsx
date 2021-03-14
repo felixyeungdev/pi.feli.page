@@ -1,10 +1,11 @@
 import { CalculatePi } from "calculate-pi";
 import React, { useEffect, useState } from "react";
-import { Button, Content, Slider } from "@felipage/react-ui";
+import { Button, Content, Slider, Switch } from "@felipage/react-ui";
 import CodeMatch from "../components/CodeMatch";
 
 const IndexPage = () => {
     const [steps, setSteps] = useState(1);
+    const [autoClick, setAutoClick] = useState(false);
 
     const [gregoryLeibnizSeries] = useState(
         new CalculatePi.GregoryLeibnizSeries()
@@ -50,6 +51,14 @@ const IndexPage = () => {
         addSteps(true);
     }, []);
 
+    useEffect(() => {
+        let stepper: NodeJS.Timeout;
+        if (autoClick) stepper = setInterval(() => addSteps(), 0);
+        return () => {
+            stepper && clearInterval(stepper);
+        };
+    }, [autoClick, steps]);
+
     return (
         <div>
             <Content>
@@ -59,7 +68,11 @@ const IndexPage = () => {
                         <Button size="small" onClick={() => addSteps()}>
                             Add Steps
                         </Button>
-                        <div className="mt-3">
+                        <div className="flex flex-col mt-3">
+                            <Switch
+                                label="Auto Click"
+                                onChange={setAutoClick}
+                            />
                             <Slider
                                 label={`Steps: ${steps}`}
                                 min={1}
