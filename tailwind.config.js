@@ -1,5 +1,6 @@
 module.exports = {
     presets: [require("@felipage/tailwind-feli")],
+    mode: "jit",
     purge: [
         "./pages/**/*.{js,ts,jsx,tsx}",
         "./components/**/*.{js,ts,jsx,tsx}",

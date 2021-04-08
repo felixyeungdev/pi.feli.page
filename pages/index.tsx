@@ -14,6 +14,7 @@ const IndexPage = () => {
     const [riemannZetaFunction] = useState(
         new CalculatePi.RiemannZetaFunction()
     );
+    const [piFromRandomNumber] = useState(new CalculatePi.PiFromRandomNumber());
 
     const [gregoryLeibnizSeriesValue, setGregoryLeibnizSeriesValue] = useState(
         gregoryLeibnizSeries.pi
@@ -23,6 +24,9 @@ const IndexPage = () => {
     );
     const [riemannZetaFunctionValue, setRiemannZetaFunctionValue] = useState(
         riemannZetaFunction.pi
+    );
+    const [piFromRandomNumberValue, setPiFromRandomNumberValue] = useState(
+        piFromRandomNumber.pi
     );
 
     const [gregoryLeibnizSeriesSteps, setGregoryLeibnizSeriesSteps] = useState(
@@ -34,17 +38,23 @@ const IndexPage = () => {
     const [riemannZetaFunctionSteps, setRiemannZetaFunctionSteps] = useState(
         riemannZetaFunction.steps
     );
+    const [piFromRandomNumberSteps, setPiFromRandomNumberSteps] = useState(
+        riemannZetaFunction.steps
+    );
 
     const addSteps = (first = false) => {
         gregoryLeibnizSeries.step(steps);
         nilakanthaSeries.step(first ? 0 : steps);
         riemannZetaFunction.step(steps);
+        piFromRandomNumber.step(steps);
         setGregoryLeibnizSeriesValue(gregoryLeibnizSeries.pi);
         setNilakanthaSeriesValue(nilakanthaSeries.pi);
         setRiemannZetaFunctionValue(riemannZetaFunction.pi);
+        setPiFromRandomNumberValue(piFromRandomNumber.pi);
         setGregoryLeibnizSeriesSteps(gregoryLeibnizSeries.steps);
         setNilakanthaSeriesSteps(nilakanthaSeries.steps);
         setRiemannZetaFunctionSteps(riemannZetaFunction.steps);
+        setPiFromRandomNumberSteps(piFromRandomNumber.steps);
     };
 
     useEffect(() => {
@@ -111,6 +121,17 @@ const IndexPage = () => {
                             Pi:{" "}
                             <CodeMatch
                                 code={riemannZetaFunctionValue.toString()}
+                                match={Math.PI.toString()}
+                            />
+                        </p>
+                    </div>
+                    <div className="mt-3">
+                        <h2 className="text-xl">Pi from Random Numbers</h2>
+                        <p>Steps: {piFromRandomNumberSteps}</p>
+                        <p>
+                            Pi:{" "}
+                            <CodeMatch
+                                code={piFromRandomNumberValue.toString()}
                                 match={Math.PI.toString()}
                             />
                         </p>

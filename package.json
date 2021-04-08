@@ -10,7 +10,7 @@
   "dependencies": {
     "@felipage/react-ui": "^0.3.2",
     "@felipage/tailwind-feli": "^1.0.7",
-    "calculate-pi": "^0.1.1",
+    "calculate-pi": "^0.1.2",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
